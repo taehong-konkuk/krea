@@ -1,60 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real Estate Society</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-gray-900 font-serif">
+  <title>KREA - Konkuk Real Estate Association</title>
+  <style>
+    :root {
+      --main-green: #2e7d32;
+      --light-green: #a5d6a7;
+      --dark-green: #1b5e20;
+      --text-color: #333;
+      --bg-color: #f9f9f9;
+    }
 
-  <!-- 헤더 -->
-  <header class="border-b">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-[#8A100B]">Real Estate Society</h1>
-      <nav class="space-x-4 font-medium text-sm">
-        <a href="#" class="hover:text-[#8A100B]">About</a>
-        <a href="#" class="hover:text-[#8A100B]">Events</a>
-        <a href="#" class="hover:text-[#8A100B]">Publications</a>
-        <a href="#" class="hover:text-[#8A100B]">Contact</a>
-      </nav>
-    </div>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--main-green);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    nav {
+      background-color: var(--dark-green);
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: linear-gradient(to right, var(--light-green), var(--main-green));
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      color: var(--main-green);
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background-color: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>KREA | Konkuk Real Estate Association</h1>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-gray-100 py-24 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Developing Future Leaders in Real Estate</h2>
-      <p class="text-lg text-gray-600">Combining academic rigor with industry practice.</p>
-    </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to KREA</h1>
+    <p>The official student real estate association at Konkuk University</p>
   </section>
 
-  <!-- 주요 콘텐츠 카드 -->
-  <section class="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-3 gap-6">
-    <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
-      <h3 class="text-lg font-semibold text-[#8A100B] mb-2">Academic Programs</h3>
-      <p class="text-sm text-gray-600">Explore our curriculum in real estate finance, investment, and urban planning.</p>
-    </div>
-    <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
-      <h3 class="text-lg font-semibold text-[#8A100B] mb-2">Research & Publications</h3>
-      <p class="text-sm text-gray-600">Read papers and insights by faculty and student researchers.</p>
-    </div>
-    <div class="border rounded-lg p-6 shadow hover:shadow-lg transition">
-      <h3 class="text-lg font-semibold text-[#8A100B] mb-2">Industry Connections</h3>
-      <p class="text-sm text-gray-600">Engage with alumni, sponsors, and corporate partners.</p>
-    </div>
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      KREA is a student-led academic society dedicated to exploring real estate investment,
+      development, and finance. We host lectures, project-based workshops, and industry networking events.
+    </p>
   </section>
 
-  <!-- 이벤트 섹션 -->
-  <section class="bg-[#1A1F2B] text-white py-20 text-center">
-    <h2 class="text-3xl font-bold mb-4">Upcoming Events</h2>
-    <p class="text-gray-300 mb-8">Join our annual symposium and networking events.</p>
-    <a href="#" class="inline-block bg-white text-[#1A1F2B] px-6 py-2 rounded font-medium hover:bg-gray-100">View Event Calendar</a>
+  <section id="activities" class="section">
+    <h2>Our Activities</h2>
+    <ul>
+      <li>Case Study Competitions</li>
+      <li>Guest Lectures from Industry Experts</li>
+      <li>Site Visits and Investment Proposal Workshops</li>
+      <li>Annual KREA Research Conference</li>
+    </ul>
   </section>
 
-  <!-- 푸터 -->
-  <footer class="bg-gray-900 text-gray-400 text-sm text-center py-6">
-    &copy; 2025 Real Estate Society. Built for academic and professional excellence.
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:krea@konkuk.ac.kr">krea@konkuk.ac.kr</a></p>
+    <p>Instagram: @krea_official</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Konkuk Real Estate Association. All rights reserved.
   </footer>
 
 </body>
