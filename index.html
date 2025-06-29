@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
   <style>
     :root {
       --main-green: #0b3b2e;
-      --bg-color: #FCFAF8;
+      --bg-color: #f6f4f1;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Open Sans', sans-serif;
     }
@@ -82,7 +81,6 @@
       width: 32px; height: 32px;
       display: flex; flex-direction: column; justify-content: space-between;
       cursor: pointer;
-      display: none;
     }
     .menu-icon div {
       height:4px; background:var(--main-green); border-radius:2px;
@@ -167,6 +165,10 @@
       font-size: 1.8rem;
       line-height: 1.3;
     }
+    .hero-subtitle {
+      font-size: 0.9rem;
+      color: #444;
+    }
 
     @media (min-width:768px) {
       header {
@@ -184,6 +186,9 @@
       }
       .hero-title br {
         display: none;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -224,9 +229,9 @@
   <div style="border-top: 3px solid var(--main-green); margin: 0 20px;"></div>
   <section style="text-align: center; padding: 60px 20px; background: var(--bg-color);">
     <h1 class="hero-title">
-      KONKUK<br>  REAL  ESTATE  <br>ASSOCIATION
+      KONKUK<br>REAL ESTATE<br>ASSOCIATION
     </h1>
-    <p style="font-size: 1.2rem; color: #444;">
+    <p class="hero-subtitle">
       Rooted in legacy. Advancing through unity.
     </p>
   </section>
@@ -267,4 +272,3 @@
   </script>
 </body>
 </html>
-
