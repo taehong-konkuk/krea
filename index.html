@@ -23,7 +23,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       min-height: 70px;
     }
     .logo {
@@ -32,11 +32,11 @@
     }
     .logo img {
       height: 50px;
-      margin-right: 0px;
+      margin-right: 10px;
     }
     .logo-text {
       font-family: var(--font-serif);
-      font-size: 3.0rem;
+      font-size: 1.8rem;
       font-weight: 600;
       color: var(--main-green);
     }
@@ -53,10 +53,6 @@
     .nav-desktop {
       display: none;
       flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 15px;
     }
     .nav-desktop ul {
       list-style:none;
@@ -201,12 +197,7 @@
         padding: 12px 40px;
       }
       .menu-icon { display: none; }
-      .nav-desktop { display: flex; }
-      .nav-desktop ul {
-        margin: 0;
-        padding: 0;
-        align-items: center;
-      }
+      .nav-desktop { display: block; }
       .apply-btn {
         position: static;
         transform: none;
