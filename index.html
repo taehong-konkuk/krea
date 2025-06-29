@@ -1,130 +1,275 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KREA - Konkuk Real Estate Association</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KREA | Konkuk Real Estate Association</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-green: #2e7d32;
-      --light-green: #a5d6a7;
-      --dark-green: #1b5e20;
-      --text-color: #333;
-      --bg-color: #f9f9f9;
+      --main-green: #2e5f3e;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Open Sans', sans-serif;
     }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: var(--font-sans); color:#333; line-height:1.6; }
+    a { text-decoration:none; color: inherit; }
 
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      margin: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-    }
-
+    /* Header 공통 */
     header {
-      background-color: var(--main-green);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    nav {
-      background-color: var(--dark-green);
+      position: relative;
       display: flex;
-      justify-content: center;
-      padding: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background: linear-gradient(to right, var(--light-green), var(--main-green));
-      color: white;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    .section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2 {
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight:600;
       color: var(--main-green);
-      margin-bottom: 1rem;
+    }
+    .apply-btn {
+      padding: 6px 16px;
+      border: 2px solid var(--main-green);
+      border-radius: 20px;
+      font-weight:600;
+      font-size:0.9rem;
+      color: var(--main-green);
     }
 
-    footer {
-      background-color: var(--dark-green);
-      color: white;
+    /* Desktop 네비게이션 */
+    .nav-desktop {
+      display: none;
+    }
+    .nav-desktop ul {
+      list-style:none;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-desktop ul li {
+      position: relative;
+    }
+    .nav-desktop ul li .submenu {
+      display: none;
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      white-space: nowrap;
+    }
+    .nav-desktop ul li:hover .submenu {
+      display: block;
+    }
+
+    /* 모바일 햄버거 */
+    .menu-icon {
+      width: 32px; height: 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer;
+    }
+    .menu-icon div {
+      height:4px; background:var(--main-green); border-radius:2px;
+    }
+
+    /* 모바일 풀스크린 메뉴 */
+    .mobile-menu {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: var(--main-green);
+      color: #fff;
+      transform: translateY(-100%);
+      transition: transform .3s ease;
+      padding: 60px 20px;
+      z-index: 1000;
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top:20px; right:20px;
+      font-size:1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu ul {
+      list-style:none;
+      margin-top: 40px;
+    }
+    .mobile-menu ul li {
+      font-size:1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-menu ul li .submenu {
+      display: none;
+      list-style:none;
+      padding-left: 16px;
+      margin-top: 8px;
+    }
+    .mobile-menu ul li.open .submenu { display: block; }
+    .mobile-menu ul li span.toggle {
+      font-size:1.2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* “What We Do” 섹션 */
+    .section {
       text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
+      padding: 60px 20px;
+    }
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 2rem;
+      font-weight:600;
+    }
+    .underline {
+      width:40px; height:3px;
+      background:var(--main-green);
+      margin:10px auto 30px;
+    }
+    .feature {
+      max-width:700px;
+      margin: 30px auto;
+    }
+    .feature h3 {
+      font-size:1.4rem;
+      font-weight:600;
+      margin-bottom: 8px;
+    }
+    .feature p {
+      font-size:1rem;
+      line-height:1.5;
+    }
+
+    /* 반응형 */
+    @media (min-width:768px) {
+      .menu-icon { display: none; }
+      .nav-desktop { display: block; }
+      .nav-desktop ul li .toggle { display: none; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>KREA | Konkuk Real Estate Association</h1>
+    <div class="logo">KREA</div>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-desktop">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#">About Us</a>
+          <ul class="submenu">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Team</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Our People</a></li>
+        <li>
+          <a href="#">Our Programs</a>
+          <ul class="submenu">
+            <li><a href="#">Mentorship</a></li>
+            <li><a href="#">Speaker Series</a></li>
+          </ul>
+        </li>
+        <li><a href="#">For Employers</a></li>
+        <li><a href="#">Members Only</a></li>
+        <li><a href="#">Alumni Network</a></li>
+        <li><a href="#">Apply</a></li>
+      </ul>
+    </nav>
+
+    <!-- Apply 버튼 (모바일/데스크탑 공통) -->
+    <a href="#" class="apply-btn">Apply</a>
+
+    <!-- Mobile 메뉴 아이콘 -->
+    <div class="menu-icon" id="menuToggle">
+      <div></div><div></div><div></div>
+    </div>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#activities">Activities</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section class="hero">
-    <h1>Welcome to KREA</h1>
-    <p>The official student real estate association at Konkuk University</p>
-  </section>
-
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>
-      KREA is a student-led academic society dedicated to exploring real estate investment,
-      development, and finance. We host lectures, project-based workshops, and industry networking events.
-    </p>
-  </section>
-
-  <section id="activities" class="section">
-    <h2>Our Activities</h2>
+  <!-- Mobile Fullscreen Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="menuClose">&times;</div>
     <ul>
-      <li>Case Study Competitions</li>
-      <li>Guest Lectures from Industry Experts</li>
-      <li>Site Visits and Investment Proposal Workshops</li>
-      <li>Annual KREA Research Conference</li>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+          <a href="#">About Us</a>
+          <span class="toggle">+</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Team</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Our People</a></li>
+      <li>
+        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+          <a href="#">Our Programs</a>
+          <span class="toggle">+</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Mentorship</a></li>
+          <li><a href="#">Speaker Series</a></li>
+        </ul>
+      </li>
+      <li><a href="#">For Employers</a></li>
+      <li><a href="#">Members Only</a></li>
+      <li><a href="#">Alumni Network</a></li>
+      <li><a href="#">Apply</a></li>
     </ul>
+  </div>
+
+  <!-- What We Do 섹션 -->
+  <section class="section">
+    <div class="section-title">What We Do</div>
+    <div class="underline"></div>
+
+    <div class="feature">
+      <h3>Recruitment</h3>
+      <p>KREA members gain exclusive access to internships, job postings, and real estate networking events.</p>
+    </div>
+    <div class="feature">
+      <h3>Mentorship</h3>
+      <p>One-on-one mentorship programs pairing students with seasoned industry professionals and alumni.</p>
+    </div>
+    <div class="feature">
+      <h3>Speaker Series</h3>
+      <p>Quarterly talks by leading real estate executives, covering finance, development, and market trends.</p>
+    </div>
+    <div class="feature">
+      <h3>Career Treks</h3>
+      <p>Site visits and company tours in major real estate hubs—REITs, property firms, and asset managers.</p>
+    </div>
   </section>
 
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:krea@konkuk.ac.kr">krea@konkuk.ac.kr</a></p>
-    <p>Instagram: @krea_official</p>
-  </section>
+  <script>
+    // 메뉴 열기/닫기
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuClose  = document.getElementById('menuClose');
+    menuToggle.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+    menuClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
 
-  <footer>
-    &copy; 2025 Konkuk Real Estate Association. All rights reserved.
-  </footer>
+    // 모바일 서브메뉴 토글
+    document.querySelectorAll('.mobile-menu .toggle').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const li = e.target.closest('li');
+        li.classList.toggle('open');
+      });
+    });
+  </script>
 
 </body>
 </html>
+
