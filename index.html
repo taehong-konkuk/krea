@@ -23,7 +23,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       min-height: 70px;
     }
     .logo {
@@ -53,6 +53,9 @@
     .nav-desktop {
       display: none;
       flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .nav-desktop ul {
       list-style:none;
@@ -197,7 +200,12 @@
         padding: 12px 40px;
       }
       .menu-icon { display: none; }
-      .nav-desktop { display: block; }
+      .nav-desktop { display: flex; }
+      .nav-desktop ul {
+        margin: 0;
+        padding: 0;
+        align-items: center;
+      }
       .apply-btn {
         position: static;
         transform: none;
