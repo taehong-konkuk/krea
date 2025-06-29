@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,21 +19,19 @@
 
     header {
       position: relative;
-      padding: 20px;
+      padding: 20px 40px;
       background: var(--bg-color);
-    }
-    .header-top {
-      width: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
     .logo {
       display: flex;
       align-items: center;
     }
     .logo img {
-      height: 60px;
+      height: 50px;
       margin-right: 10px;
     }
     .logo-text {
@@ -48,16 +47,12 @@
       font-weight:600;
       font-size:0.9rem;
       color: var(--main-green);
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
+      background: transparent;
     }
 
     .nav-desktop {
       display: none;
-      margin-top: 20px;
+      flex-grow: 1;
     }
     .nav-desktop ul {
       list-style:none;
@@ -87,10 +82,7 @@
       width: 32px; height: 32px;
       display: flex; flex-direction: column; justify-content: space-between;
       cursor: pointer;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      z-index: 11;
+      display: none;
     }
     .menu-icon div {
       height:4px; background:var(--main-green); border-radius:2px;
@@ -177,16 +169,13 @@
     }
 
     @media (min-width:768px) {
-      .header-top {
-        justify-content: flex-start;
+      header {
+        flex-wrap: nowrap;
       }
       .menu-icon { display: none; }
       .nav-desktop { display: block; }
-      .nav-desktop ul li .toggle { display: none; }
       .apply-btn {
-        position: absolute;
-        top: 20px;
-        right: 40px;
+        position: static;
         transform: none;
       }
       .hero-title {
@@ -201,16 +190,10 @@
 </head>
 <body>
   <header>
-    <div class="header-top">
-      <div class="logo">
-        <img src="krea_logo.png" alt="KREA Logo">
-        <div class="logo-text">KREA</div>
-      </div>
-      <div class="menu-icon" id="menuToggle">
-        <div></div><div></div><div></div>
-      </div>
+    <div class="logo">
+      <img src="krea_logo.png" alt="KREA Logo">
+      <div class="logo-text">KREA</div>
     </div>
-    <a href="#" class="apply-btn">Apply</a>
     <nav class="nav-desktop">
       <ul>
         <li><a href="#">Home</a></li>
@@ -218,9 +201,12 @@
         <li><a href="#">Our People</a></li>
         <li><a href="#">Our Programs</a><ul class="submenu"><li><a href="#">Mentorship</a></li><li><a href="#">Speaker Series</a></li></ul></li>
         <li><a href="#">For Employers</a></li>
-        <li><a href="#">Apply</a></li>
       </ul>
     </nav>
+    <a href="#" class="apply-btn">Apply</a>
+    <div class="menu-icon" id="menuToggle">
+      <div></div><div></div><div></div>
+    </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
