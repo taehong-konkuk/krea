@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-green: #007B3A; /* 채도 높은 강렬한 초록색 */
+      --main-green: #007B3A;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Open Sans', sans-serif;
     }
@@ -19,9 +19,8 @@
       position: relative;
       padding: 20px;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      align-items: center;
     }
     .header-top {
       width: 100%;
@@ -50,12 +49,14 @@
 
     .nav-desktop {
       display: none;
+      margin-top: 20px;
     }
     .nav-desktop ul {
       list-style:none;
       display: flex;
       gap: 24px;
       align-items: center;
+      justify-content: center;
     }
     .nav-desktop ul li {
       position: relative;
@@ -166,8 +167,7 @@
 
     @media (min-width:768px) {
       header {
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
       }
       .menu-icon { display: none; }
       .nav-desktop { display: block; }
@@ -176,10 +176,10 @@
         font-size: 3.5rem;
       }
       .apply-btn {
-        margin-top: 0;
-        position: absolute;
-        right: 20px;
-        top: 20px;
+        margin-top: 10px;
+        position: relative;
+        top: auto;
+        right: auto;
       }
     }
   </style>
@@ -263,3 +263,4 @@
   </script>
 </body>
 </html>
+
