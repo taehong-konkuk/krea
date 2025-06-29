@@ -62,18 +62,21 @@
     }
     .nav-desktop ul li {
       position: relative;
+      padding-bottom: 20px;
     }
     .nav-desktop ul li .submenu {
       display: none;
       position: absolute;
-      top: 120%;
+      top: 100%;
       left: 0;
       background: #fff;
       border: 1px solid #ddd;
       padding: 10px;
       white-space: nowrap;
+      z-index: 999;
     }
-    .nav-desktop ul li:hover .submenu {
+    .nav-desktop ul li:hover .submenu,
+    .nav-desktop ul li .submenu:hover {
       display: block;
     }
 
@@ -172,6 +175,7 @@
     .hero-subtitle {
       font-size: 0.75rem;
       color: #444;
+      margin-top: 0.5rem;
     }
 
     @media (min-width:768px) {
@@ -198,4 +202,81 @@
   </style>
 </head>
 <body>
-<!-- body remains unchanged -->
+  <header>
+    <div class="logo">
+      <img src="krea_logo.png" alt="KREA Logo">
+      <div class="logo-text">KREA</div>
+    </div>
+    <nav class="nav-desktop">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a><ul class="submenu"><li><a href="#">Our Story</a></li><li><a href="#">Team</a></li></ul></li>
+        <li><a href="#">Our People</a></li>
+        <li><a href="#">Our Programs</a><ul class="submenu"><li><a href="#">Mentorship</a></li><li><a href="#">Speaker Series</a></li></ul></li>
+        <li><a href="#">For Employers</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="apply-btn">Apply</a>
+    <div class="menu-icon" id="menuToggle">
+      <div></div><div></div><div></div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="menuClose">&times;</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><div style="width:100%; display:flex; justify-content:space-between; align-items:center;"><a href="#">About Us</a><span class="toggle">+</span></div><ul class="submenu"><li><a href="#">Our Story</a></li><li><a href="#">Team</a></li></ul></li>
+      <li><a href="#">Our People</a></li>
+      <li><div style="width:100%; display:flex; justify-content:space-between; align-items:center;"><a href="#">Our Programs</a><span class="toggle">+</span></div><ul class="submenu"><li><a href="#">Mentorship</a></li><li><a href="#">Case Competition</a></li><li><a href="#">Speaker Series</a></li></ul></li>
+      <li><a href="#">For Employers</a></li>
+      <li><a href="#">Apply</a></li>
+    </ul>
+  </div>
+
+  <div style="border-top: 3px solid var(--main-green); margin: 0 20px;"></div>
+  <section style="text-align: center; padding: 60px 20px; background: var(--bg-color);">
+    <h1 class="hero-title">
+      KONKUK<br>REAL ESTATE<br>ASSOCIATION
+    </h1>
+    <p class="hero-subtitle">
+      Rooted in legacy. Advancing through unity.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-title">What We Do</div>
+    <div class="underline"></div>
+    <div class="feature">
+      <h3>Recruitment</h3>
+      <p>KREA members gain exclusive access to internships, job postings, and real estate networking events.</p>
+    </div>
+    <div class="feature">
+      <h3>Mentorship</h3>
+      <p>One-on-one mentorship programs pairing students with seasoned industry professionals and alumni.</p>
+    </div>
+    <div class="feature">
+      <h3>Speaker Series</h3>
+      <p>Quarterly talks by leading real estate executives, covering finance, development, and market trends.</p>
+    </div>
+    <div class="feature">
+      <h3>Career Treks</h3>
+      <p>Site visits and company tours in major real estate hubs—REITs, property firms, and asset managers.</p>
+    </div>
+  </section>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuClose  = document.getElementById('menuClose');
+    menuToggle.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+    menuClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mobile-menu .toggle').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const li = e.target.closest('li');
+        li.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
