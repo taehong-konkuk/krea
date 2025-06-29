@@ -7,32 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-green: #007B3A;
+      --main-green: #0b3b2e;
+      --bg-color: #f6f4f1;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Open Sans', sans-serif;
     }
     * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: var(--font-sans); color:#333; line-height:1.6; }
+    body { font-family: var(--font-sans); color:#333; line-height:1.6; background: var(--bg-color); }
     a { text-decoration:none; color: inherit; }
 
     header {
       position: relative;
       padding: 20px;
+      background: var(--bg-color);
     }
     .header-top {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
     .logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 1;
     }
     .logo img {
-      height: 50px;
+      height: 60px;
     }
     .apply-btn {
       padding: 6px 16px;
@@ -42,14 +43,15 @@
       font-size:0.9rem;
       color: var(--main-green);
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 10;
     }
 
     .nav-desktop {
       display: none;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     .nav-desktop ul {
       list-style:none;
@@ -79,6 +81,9 @@
       width: 32px; height: 32px;
       display: flex; flex-direction: column; justify-content: space-between;
       cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
       z-index: 11;
     }
     .menu-icon div {
@@ -172,6 +177,12 @@
       .menu-icon { display: none; }
       .nav-desktop { display: block; }
       .nav-desktop ul li .toggle { display: none; }
+      .apply-btn {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        transform: none;
+      }
       .hero-title {
         font-size: 2.8rem;
         line-height: 1.2;
@@ -218,9 +229,9 @@
   </div>
 
   <div style="border-top: 3px solid var(--main-green); margin: 0 20px;"></div>
-  <section style="text-align: center; padding: 60px 20px;">
+  <section style="text-align: center; padding: 60px 20px; background: var(--bg-color);">
     <h1 class="hero-title">
-      KONKUK<br>REAL ESTATE<br>ASSOCIATION
+      KONKUK<br> REAL ESTATE <br>ASSOCIATION
     </h1>
     <p style="font-size: 1.2rem; color: #444;">
       Rooted in legacy. Advancing through unity.
