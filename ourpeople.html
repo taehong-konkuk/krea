@@ -1,1 +1,298 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KREA | Konkuk Real Estate Association</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-green: #0b3b2e;
+      --bg-color: #FCFAF8;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Open Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: var(--font-sans); color:#333; line-height:1.6; background: var(--bg-color); }
+    a { text-decoration:none; color: inherit; }
+
+    header {
+      position: relative;
+      padding: 10px 20px;
+      background: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      min-height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 50px;
+      margin-right: 0px;
+    }
+    .logo-text {
+      font-family: var(--font-serif);
+      font-size: 2.3rem;
+      font-weight: 600;
+      color: var(--main-green);
+    }
+    .apply-btn {
+      padding: 6px 16px;
+      border: 2px solid var(--main-green);
+      border-radius: 20px;
+      font-weight:600;
+      font-size:0.9rem;
+      color: var(--main-green);
+      background: transparent;
+    }
+
+    .nav-desktop {
+      display: none;
+      flex-grow: 1;
+    }
+    .nav-desktop ul {
+      list-style:none;
+      display: flex;
+      gap: 32px;
+      margin-top: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-desktop ul li {
+      position: relative;
+      padding-bottom: 0px;
+    }
+    .nav-desktop ul li .submenu {
+      display: none;
+      position: absolute;
+      top: 65%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 0px 0;
+      white-space: nowrap;
+      z-index: 999;
+    }
+    .nav-desktop ul li .submenu li {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .nav-desktop ul li .submenu li:hover {
+      background-color: #f0f0f0;
+    }
+    .nav-desktop ul li:hover .submenu,
+    .nav-desktop ul li .submenu:hover {
+      display: block;
+    }
+
+    .menu-icon {
+      width: 32px; height: 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer;
+    }
+    .menu-icon div {
+      height:4px; background:var(--main-green); border-radius:2px;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: var(--main-green);
+      color: #fff;
+      transform: translateY(-100%);
+      transition: transform .3s ease;
+      padding: 60px 20px;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top:20px; right:20px;
+      font-size:1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu ul {
+      list-style:none;
+      margin-top: 40px;
+    }
+    .mobile-menu ul li {
+      font-size:0.85rem;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      display: block;
+    }
+    .mobile-menu ul li > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-menu ul li .submenu {
+      display: none;
+      list-style:none;
+      padding-left: 24px;
+      margin-top: 6px;
+    }
+    .mobile-menu ul li.open .submenu { display: block; }
+    .mobile-menu ul li span.toggle {
+      font-size:1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 2rem;
+      font-weight:600;
+    }
+    .underline {
+      width:700px; height:3px;
+      background:var(--main-green);
+      margin:10px auto 30px;
+    }
+    .feature {
+      max-width:400px;
+      margin: 30px auto;
+    }
+    .feature h3 {
+      font-size:1.4rem;
+      font-weight:600;
+      margin-bottom: 8px;
+      color: var(--main-green);
+    }
+    .feature p {
+      font-size:1rem;
+      line-height:1.5;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--main-green);
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      line-height: 1.3;
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #444;
+      margin-top: 0.5rem;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width:768px) {
+      header {
+        flex-wrap: nowrap;
+        padding: 12px 40px;
+      }
+      .menu-icon { display: none; }
+      .nav-desktop { display: block; }
+      .apply-btn {
+        position: static;
+        transform: none;
+      }
+      .hero-title {
+        font-size: 4.2rem;
+        line-height: 1.2;
+      }
+      .hero-title br {
+        display: none;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+
+
+  
+<body>
+  <header>
+    <div class="logo">
+      <img src="krea_logo.png" alt="KREA Logo">
+      <div class="logo-text">KREA</div>
+    </div>
+    <nav class="nav-desktop">
+      <ul>
+        <li><a href="../krea/index.html">Home</a></li>
+        <li><a href="../krea/aboutus.html">About Us</a></li>
+        <li><a href="../krea/ourpeople.html">Our People</a></li>
+        <li><a href="../krea/ourprograms.html">Our Programs</a>
+          <ul class="submenu">
+            <li><a href="../krea/mentorship.html">Mentorship Program</a></li>
+            <li><a href="../krea/casecompetition.html">Case Competition</a></li>
+            <li><a href="../krea/speakerseries.html">Speaker Series</a></li></ul></li>
+        <li><a href="../krea/foremployers.html">For Employers</a></li>
+        <li><a href="#">More</a>
+          <ul class="submenu">
+            <li><a href="../krea/alumninetwork.html">Alumni Network</a></li>
+            <li><a href="../krea/membersonly.html">Members Only</a></li></ul></li>
+      </ul>
+    </nav>
+    <a href="#" class="apply-btn">Apply</a>
+    <div class="menu-icon" id="menuToggle">
+      <div></div><div></div><div></div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="menuClose">&times;</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Our People</a></li>
+      <li>
+        <div style="width:100%; display:flex; justify-content:space-between; align-items:center;"><a href="#">Our Programs</a><span class="toggle">+</span></div>
+        <ul class="submenu">
+          <li><a href="#">Mentorship Program</a></li>
+          <li><a href="#">Case Competition</a></li>
+          <li><a href="#">Speaker Series</a></li></ul>
+      </li>
+      <li><a href="#">For Employers</a></li>
+       <li>
+         <div style="width:100%; display:flex; justify-content:space-between; align-items:center;"><a href="#">More</a><span class="toggle">+</span></div>
+         <ul class="submenu">
+           <li><a href="#">Alumni Network</a></li>
+           <li><a href="#">Members Only</a></li></ul>
+       </li>
+      <li><a href="#">Apply</a></li>
+    </ul>
+  </div>
+  
+  <section class="section">
+     <div class="feature">
+      <h3>작업중</h3>
+    </div>
+  </section>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuClose  = document.getElementById('menuClose');
+    menuToggle.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+    menuClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mobile-menu .toggle').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const li = e.target.closest('li');
+        li.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
