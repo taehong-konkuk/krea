@@ -94,34 +94,60 @@
     <a class="download-link" href="../krea/[KREA_2기]이름_전공.docx" download>📄 Download Application Form</a>
 
     <!-- ✅ 업로드 박스 -->
-<form class="upload-box" action="https://formsubmit.co/krea.apply@gmail.com" method="POST" enctype="multipart/form-data">
-  <p>Upload your completed application form here:</p>
+<!-- 업로드 박스 -->
+<form class="upload-box" action="https://formsubmit.co/krea.konkuk@gmail.com" method="POST" enctype="multipart/form-data" id="uploadForm">
+  <p>Upload your completed application form below:</p>
 
-  <!-- 파일 선택 라벨 -->
-  <label class="upload-label" for="file-upload">Choose File</label>
-  <input type="file" name="attachment" id="file-upload" required>
-
-  <!-- 선택한 파일명을 표시할 공간 -->
-  <p id="file-name" style="margin-top: 10px; font-size: 0.85rem; color: #333;"></p>
+  <div id="drop-zone" style="border: 2px dashed var(--main-green); border-radius: 12px; padding: 30px 20px; background: #fff;">
+    <p id="drop-text" style="color:#666;">📎 Drag & drop your file here, or click to select.</p>
+    <input type="file" name="attachment" id="file-upload" required style="display: none;" />
+    <p id="file-name" style="margin-top: 10px; font-size: 0.85rem; color: #333;"></p>
+  </div>
 
   <button class="submit-btn" type="submit">Submit</button>
 
-  <!-- 숨김 설정 -->
+  <!-- 숨김 필드 -->
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="New KREA Application Submission">
 </form>
 <script>
+  const dropZone = document.getElementById("drop-zone");
   const fileInput = document.getElementById("file-upload");
   const fileNameDisplay = document.getElementById("file-name");
 
-  fileInput.addEventListener("change", function () {
+  // 클릭 시 파일 선택
+  dropZone.addEventListener("click", () => fileInput.click());
+
+  // 선택된 파일 표시
+  fileInput.addEventListener("change", () => {
     if (fileInput.files.length > 0) {
-      fileNameDisplay.textContent = `📎 Selected: ${fileInput.files[0].name}`;
+      fileNameDisplay.textContent = `📄 ${fileInput.files[0].name}`;
     } else {
       fileNameDisplay.textContent = "";
     }
   });
+
+  // 드래그&드롭 지원
+  dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.style.background = "#f5f5f5";
+  });
+
+  dropZone.addEventListener("dragleave", () => {
+    dropZone.style.background = "#fff";
+  });
+
+  dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.style.background = "#fff";
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      fileInput.files = files;
+      fileNameDisplay.textContent = `📄 ${files[0].name}`;
+    }
+  });
 </script>
+
 
   </div>
 
