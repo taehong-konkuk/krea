@@ -116,17 +116,23 @@
       margin-top: 6px;
     }
     button.submit-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: var(--main-green);
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      width: 100%;
-    }
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--main-green);
+  color: white;
+  border: 2px solid var(--main-green);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 100%;
+  transition: 0.3s;
+}
+
+button.submit-btn:hover {
+  background-color: white;
+  color: var(--main-green);
+}
     #file-upload {
       font-size: 0.85rem;
       border: none;
@@ -140,7 +146,7 @@
  <div class="container">
   <!-- 로고 + KREA 텍스트 -->
   <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-    <img src="/krea/krea_logo.png" alt="KREA Logo" style="height: 40px; margin-right: 10px;">
+    <img src="krea_logo.png" alt="KREA Logo" style="height: 40px; margin-right: 10px;">
     <span style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--main-green);">
       KREA
     </span>
@@ -153,7 +159,7 @@
 
   <!-- 설명 문장: 한 줄 -->
   <p style="margin-bottom: 20px;">
-    Download the application form below, fill it out, and submit it using the uploader.
+    Download the application form below,<br>fill it out, and submit it using the uploader.
   </p>
 
     <a class="download-link" href="../krea/[KREA_2기]이름_전공.docx" download>📄 Download Application Form</a>
