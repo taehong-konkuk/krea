@@ -1,1 +1,111 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply to KREA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-green: #0b3b2e;
+      --bg-color: #FCFAF8;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Open Sans', sans-serif;
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--main-green);
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+    a.download-link {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      border: 2px solid var(--main-green);
+      color: var(--main-green);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    a.download-link:hover {
+      background-color: var(--main-green);
+      color: white;
+    }
+
+    .upload-box {
+      margin-top: 40px;
+      border: 2px dashed var(--main-green);
+      padding: 40px 20px;
+      border-radius: 12px;
+      background: white;
+    }
+    .upload-box p {
+      font-size: 1rem;
+      color: #666;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    .upload-label {
+      display: inline-block;
+      padding: 8px 20px;
+      background-color: var(--main-green);
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    button.submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: var(--main-green);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Apply to KREA</h1>
+    <p>Download the application form below, fill it out, and submit it using the uploader.</p>
+
+    <!-- ✅ 다운로드 링크 -->
+    <a class="download-link" href="KREA_Application_Form.pdf" download>📄 Download Application Form</a>
+
+    <!-- ✅ 업로드 박스 -->
+    <form class="upload-box" action="https://formsubmit.co/krea.konkuk@gmail.com" method="POST" enctype="multipart/form-data">
+      <p>Upload your completed application form here:</p>
+      <label class="upload-label" for="file-upload">Choose File</label>
+      <input type="file" name="attachment" id="file-upload" required>
+      <br>
+      <button class="submit-btn" type="submit">Submit</button>
+
+      <!-- 숨김 설정: 이메일 확인, 스팸 방지 -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New KREA Application Submission">
+    </form>
+  </div>
+
+</body>
+</html>
