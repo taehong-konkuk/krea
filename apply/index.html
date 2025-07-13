@@ -137,9 +137,25 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Apply to KREA</h1>
-    <p>Download the application form below, fill it out, and submit it using the uploader.</p>
+ <div class="container">
+  <!-- 로고 + KREA 텍스트 -->
+  <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+    <img src="/krea/krea_logo.png" alt="KREA Logo" style="height: 40px; margin-right: 10px;">
+    <span style="font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--main-green);">
+      KREA
+    </span>
+  </div>
+
+  <!-- 제목: sans-serif + 검정 -->
+  <h1 style="font-family: var(--font-sans); color: black; font-size: 2rem; margin-bottom: 6px;">
+    2025 2H Recruitment
+  </h1>
+
+  <!-- 설명 문장: 한 줄 -->
+  <p style="margin-bottom: 20px;">
+    Download the application form below, fill it out, and submit it using the uploader.
+  </p>
+
     <a class="download-link" href="../krea/[KREA_2기]이름_전공.docx" download>📄 Download Application Form</a>
 
     <form id="uploadForm" action="https://formsubmit.co/krea.apply@gmail.com" method="POST" enctype="multipart/form-data">
