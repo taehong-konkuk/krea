@@ -129,7 +129,6 @@
       color: var(--error);
       font-size: 0.85rem;
       margin-top: 6px;
-      display: none;
     }
     button.submit-btn {
       margin-top: 20px;
@@ -256,6 +255,7 @@
         currentFiles = files;
         renderFileList();
       } else {
+        fileInput.value = "";
         currentFiles = [];
         renderFileList();
       }
@@ -263,7 +263,7 @@
 
     form.addEventListener("submit", (e) => {
       fileError.style.display = "none";
-      if (fileInput.files.length === 0 || currentFiles.length === 0) {
+      if (!currentFiles || currentFiles.length === 0) {
         fileError.textContent = "Please upload at least one PDF file before submitting.";
         fileError.style.display = "block";
         e.preventDefault();
