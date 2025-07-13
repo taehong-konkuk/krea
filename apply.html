@@ -11,6 +11,7 @@
       --bg-color: #FCFAF8;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Open Sans', sans-serif;
+      --error: #cc0000;
     }
     body {
       font-family: var(--font-sans);
@@ -78,18 +79,50 @@
       margin-bottom: 20px;
     }
     #drop-zone {
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
       padding: 30px 20px;
       border-radius: 10px;
-      background: #fafafa;
-      text-align: center;
-      transition: background 0.3s;
+      background: #f9f9f9;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    #file-name {
-      margin-top: 12px;
+    #file-list {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .file-entry {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 0.9rem;
       color: #333;
-      font-style: italic;
+      width: 100%;
+    }
+    .file-entry::before {
+      content: "\1F5CE";
+      font-size: 1rem;
+      margin-right: 6px;
+    }
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: var(--error);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .error-message {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 6px;
     }
     button.submit-btn {
       margin-top: 20px;
@@ -121,12 +154,13 @@
       <label for="email">Email</label>
       <input type="email" name="email" id="email" required>
 
-      <label class="upload-label" for="file-upload">📎 Choose File</label>
-      <input type="file" name="attachment" id="file-upload" required style="display:none;">
+      <label class="upload-label" for="file-upload">📎 Choose PDF File</label>
+      <input type="file" name="attachment" id="file-upload" accept="application/pdf" required multiple>
 
       <div id="drop-zone">
-        <p id="drop-text">Or drag and drop your file here</p>
-        <p id="file-name"></p>
+        <p style="color:#666; font-style: italic;">Drag and drop your PDF file(s) here</p>
+        <div id="file-list"></div>
+        <div id="file-error" class="error-message" style="display:none;"></div>
       </div>
 
       <button class="submit-btn" type="submit">Submit Application</button>
@@ -137,39 +171,97 @@
   </div>
 
   <script>
+    const form = document.getElementById("uploadForm");
     const dropZone = document.getElementById("drop-zone");
     const fileInput = document.getElementById("file-upload");
-    const fileNameDisplay = document.getElementById("file-name");
+    const fileListDisplay = document.getElementById("file-list");
+    const fileError = document.getElementById("file-error");
 
-    dropZone.addEventListener("click", () => fileInput.click());
+    let currentFiles = [];
+
+    dropZone.addEventListener("click", (e) => e.preventDefault());
+
+    function validatePDF(files) {
+      fileError.style.display = "none";
+      for (const file of files) {
+        if (file.type !== "application/pdf") {
+          fileError.textContent = "Only PDF files are allowed. Please upload a .pdf file.";
+          fileError.style.display = "block";
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function renderFileList() {
+      fileListDisplay.innerHTML = "";
+      currentFiles.forEach((file, index) => {
+        const entry = document.createElement("div");
+        entry.className = "file-entry";
+
+        const fileName = document.createElement("span");
+        fileName.textContent = file.name;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "✖";
+        removeBtn.addEventListener("click", () => {
+          currentFiles.splice(index, 1);
+          renderFileList();
+        });
+
+        entry.appendChild(fileName);
+        entry.appendChild(removeBtn);
+        fileListDisplay.appendChild(entry);
+      });
+
+      // sync files with input
+      const dataTransfer = new DataTransfer();
+      currentFiles.forEach(file => dataTransfer.items.add(file));
+      fileInput.files = dataTransfer.files;
+    }
 
     fileInput.addEventListener("change", () => {
-      if (fileInput.files.length > 0) {
-        fileNameDisplay.textContent = fileInput.files[0].name;
+      const files = Array.from(fileInput.files);
+      if (validatePDF(files)) {
+        currentFiles = files;
+        renderFileList();
       } else {
-        fileNameDisplay.textContent = "";
+        fileInput.value = "";
+        currentFiles = [];
+        renderFileList();
       }
     });
 
     dropZone.addEventListener("dragover", (e) => {
       e.preventDefault();
-      dropZone.style.background = "#f0f0f0";
+      dropZone.style.background = "#efefef";
     });
 
     dropZone.addEventListener("dragleave", () => {
-      dropZone.style.background = "#fafafa";
+      dropZone.style.background = "#f9f9f9";
     });
 
     dropZone.addEventListener("drop", (e) => {
       e.preventDefault();
-      dropZone.style.background = "#fafafa";
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        fileInput.files = files;
-        fileNameDisplay.textContent = files[0].name;
+      dropZone.style.background = "#f9f9f9";
+      const files = Array.from(e.dataTransfer.files);
+      if (validatePDF(files)) {
+        currentFiles = files;
+        renderFileList();
+      } else {
+        currentFiles = [];
+        renderFileList();
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      if (fileInput.files.length === 0) {
+        fileError.textContent = "Please upload at least one PDF file before submitting.";
+        fileError.style.display = "block";
+        e.preventDefault();
       }
     });
   </script>
 </body>
 </html>
-
