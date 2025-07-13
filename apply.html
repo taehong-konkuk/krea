@@ -60,16 +60,13 @@
       margin-bottom: 6px;
       font-weight: 600;
     }
-    input[type="text"], input[type="email"], input[type="file"] {
+    input[type="text"], input[type="email"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 0.95rem;
-    }
-    input[type="file"] {
-      display: block !important;
     }
     #drop-zone {
       border: 1px solid #ccc;
@@ -130,6 +127,13 @@
       font-size: 1rem;
       width: 100%;
     }
+    #file-upload {
+      font-size: 0.85rem;
+      border: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
@@ -152,7 +156,7 @@
       <input type="file" name="attachment" id="file-upload" accept="application/pdf" required>
 
       <div id="drop-zone">
-        <p style="color:#666; font-style: italic; margin: 0;">📂 Drag and drop your PDF file(s) here</p>
+        <p style="color:#666; font-style: italic; margin: 0; text-align: left;">📂 Drag and drop your PDF file(s) here</p>
         <div id="file-list"></div>
         <div id="file-error" class="error-message"></div>
       </div>
