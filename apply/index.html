@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply to KREA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-green: #0b3b2e;
+      --bg-color: #FCFAF8;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Open Sans', sans-serif;
+      --error: #cc0000;
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      color: var(--main-green);
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+    a.download-link {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      border: 2px solid var(--main-green);
+      color: var(--main-green);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    a.download-link:hover {
+      background-color: var(--main-green);
+      color: white;
+    }
+    form {
+      margin-top: 30px;
+      text-align: left;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    #drop-zone {
+      border: 1px solid #ccc;
+      padding: 30px 20px;
+      border-radius: 10px;
+      background: #f9f9f9;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #file-list {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .file-entry {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .file-entry span {
+      flex-grow: 1;
+      text-align: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 10px;
+    }
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: var(--error);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .error-message {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+    button.submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: var(--main-green);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 100%;
+    }
+    #file-upload {
+      font-size: 0.85rem;
+      border: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Apply to KREA</h1>
+    <p>Download the application form below, fill it out, and submit it using the uploader.</p>
+    <a class="download-link" href="../krea/[KREA_2기]이름_전공.docx" download>📄 Download Application Form</a>
+
+    <form id="uploadForm" action="https://formsubmit.co/krea.apply@gmail.com" method="POST" enctype="multipart/form-data">
+      <label for="name">Full Name</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="contact">Contact Number</label>
+      <input type="text" name="contact" id="contact" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="file-upload">Select PDF File</label>
+      <input type="file" name="attachment" id="file-upload" accept="application/pdf" required>
+
+      <div id="drop-zone">
+        <p style="color:#666; font-style: italic; margin: 0; text-align: left;">📂 Drag and drop your PDF file(s) here</p>
+        <div id="file-list"></div>
+        <div id="file-error" class="error-message"></div>
+      </div>
+
+      <button class="submit-btn" type="submit">Submit Application</button>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New KREA Application Submission">
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const dropZone = document.getElementById("drop-zone");
+    const fileInput = document.getElementById("file-upload");
+    const fileListDisplay = document.getElementById("file-list");
+    const fileError = document.getElementById("file-error");
+
+    let currentFiles = [];
+
+    function validatePDF(files) {
+      fileError.style.display = "none";
+      for (const file of files) {
+        if (file.type !== "application/pdf") {
+          fileError.textContent = "Only PDF files are allowed. Please upload a .pdf file.";
+          fileError.style.display = "block";
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function renderFileList() {
+      fileListDisplay.innerHTML = "";
+      currentFiles.forEach((file, index) => {
+        const entry = document.createElement("div");
+        entry.className = "file-entry";
+
+        const fileName = document.createElement("span");
+        fileName.textContent = file.name;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "✖";
+        removeBtn.addEventListener("click", () => {
+          currentFiles.splice(index, 1);
+          renderFileList();
+        });
+
+        entry.appendChild(fileName);
+        entry.appendChild(removeBtn);
+        fileListDisplay.appendChild(entry);
+      });
+
+      const dataTransfer = new DataTransfer();
+      currentFiles.forEach(file => dataTransfer.items.add(file));
+      fileInput.files = dataTransfer.files;
+    }
+
+    fileInput.addEventListener("change", () => {
+      const files = Array.from(fileInput.files);
+      if (validatePDF(files)) {
+        currentFiles = files;
+        renderFileList();
+      } else {
+        fileInput.value = "";
+        currentFiles = [];
+        renderFileList();
+      }
+    });
+
+    dropZone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZone.style.background = "#efefef";
+    });
+
+    dropZone.addEventListener("dragleave", () => {
+      dropZone.style.background = "#f9f9f9";
+    });
+
+    dropZone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropZone.style.background = "#f9f9f9";
+      const files = Array.from(e.dataTransfer.files);
+      if (validatePDF(files)) {
+        currentFiles = files;
+        renderFileList();
+      } else {
+        fileInput.value = "";
+        currentFiles = [];
+        renderFileList();
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      fileError.style.display = "none";
+      if (!currentFiles || currentFiles.length === 0) {
+        fileError.textContent = "Please upload at least one PDF file before submitting.";
+        fileError.style.display = "block";
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
