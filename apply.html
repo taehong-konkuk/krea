@@ -94,17 +94,23 @@
     <a class="download-link" href="KREA_Application_Form.pdf" download>📄 Download Application Form</a>
 
     <!-- ✅ 업로드 박스 -->
-    <form class="upload-box" action="https://formsubmit.co/krea.konkuk@gmail.com" method="POST" enctype="multipart/form-data">
-      <p>Upload your completed application form here:</p>
-      <label class="upload-label" for="file-upload">Choose File</label>
-      <input type="file" name="attachment" id="file-upload" required>
-      <br>
-      <button class="submit-btn" type="submit">Submit</button>
+<form class="upload-box" action="https://formsubmit.co/krea.konkuk@gmail.com" method="POST" enctype="multipart/form-data">
+  <p>Upload your completed application form here:</p>
 
-      <!-- 숨김 설정: 이메일 확인, 스팸 방지 -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New KREA Application Submission">
-    </form>
+  <!-- 파일 선택 라벨 -->
+  <label class="upload-label" for="file-upload">Choose File</label>
+  <input type="file" name="attachment" id="file-upload" required>
+
+  <!-- 선택한 파일명을 표시할 공간 -->
+  <p id="file-name" style="margin-top: 10px; font-size: 0.85rem; color: #333;"></p>
+
+  <button class="submit-btn" type="submit">Submit</button>
+
+  <!-- 숨김 설정 -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New KREA Application Submission">
+</form>
+
   </div>
 
 </body>
