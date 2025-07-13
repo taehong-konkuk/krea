@@ -78,12 +78,8 @@
       font-size: 0.9rem;
       margin-bottom: 20px;
     }
-    #file-upload::-webkit-file-upload-button {
-      display: none;
-    }
-    #file-upload::file-selector-button {
-      display: none;
-    }
+    #file-upload::-webkit-file-upload-button,
+    #file-upload::file-selector-button,
     #file-upload {
       display: none !important;
     }
@@ -107,14 +103,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 6px 12px;
+      padding: 10px 14px;
       background: #fff;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 0.9rem;
       color: #333;
-      width: 100%;
     }
     .file-entry span {
       flex-grow: 1;
@@ -129,6 +123,7 @@
       color: var(--error);
       cursor: pointer;
       font-size: 0.9rem;
+      margin-left: 10px;
     }
     .error-message {
       color: var(--error);
@@ -169,7 +164,7 @@
       <input type="file" name="attachment" id="file-upload" accept="application/pdf" required multiple>
 
       <div id="drop-zone">
-        <p style="color:#666; font-style: italic;">📂 Drag and drop your PDF file(s) here</p>
+        <p style="color:#666; font-style: italic; margin: 0;">📂 Drag and drop your PDF file(s) here</p>
         <div id="file-list"></div>
         <div id="file-error" class="error-message" style="display:none;"></div>
       </div>
