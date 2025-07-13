@@ -60,7 +60,7 @@
       margin-bottom: 6px;
       font-weight: 600;
     }
-    input[type="text"], input[type="email"] {
+    input[type="text"], input[type="email"], input[type="file"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
@@ -68,20 +68,8 @@
       border-radius: 6px;
       font-size: 0.95rem;
     }
-    .upload-label {
-      display: inline-block;
-      padding: 8px 20px;
-      background-color: var(--main-green);
-      color: white;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
-    #file-upload::-webkit-file-upload-button,
-    #file-upload::file-selector-button,
-    #file-upload {
-      display: none !important;
+    input[type="file"] {
+      display: block !important;
     }
     #drop-zone {
       border: 1px solid #ccc;
@@ -160,8 +148,8 @@
       <label for="email">Email</label>
       <input type="email" name="email" id="email" required>
 
-      <label class="upload-label" for="file-upload">📎 Choose PDF File</label>
-      <input type="file" name="attachment" id="file-upload" accept="application/pdf" required multiple>
+      <label for="file-upload">Select PDF File</label>
+      <input type="file" name="attachment" id="file-upload" accept="application/pdf" required>
 
       <div id="drop-zone">
         <p style="color:#666; font-style: italic; margin: 0;">📂 Drag and drop your PDF file(s) here</p>
@@ -184,8 +172,6 @@
     const fileError = document.getElementById("file-error");
 
     let currentFiles = [];
-
-    dropZone.addEventListener("click", (e) => e.preventDefault());
 
     function validatePDF(files) {
       fileError.style.display = "none";
@@ -272,4 +258,3 @@
   </script>
 </body>
 </html>
-
